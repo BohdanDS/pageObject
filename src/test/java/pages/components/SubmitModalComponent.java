@@ -28,7 +28,7 @@ public class SubmitModalComponent {
         return this;
     }
 
-    public SubmitModalComponent verifySubmittedDate(String field, String value){
+    public SubmitModalComponent verifySubmittedData(String field, String value){
         modalBody.$(byText(field)).sibling(0).shouldHave(text(value));
         return this;
     }

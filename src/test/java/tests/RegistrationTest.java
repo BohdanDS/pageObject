@@ -33,9 +33,9 @@ public class RegistrationTest extends TestBase {
 //        Assertions
         submitModalComponent.modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedDate("Student Name", "Bohdan Peliutkevich")
-                .verifySubmittedDate("Student Email", "bohdan@gmail.com")
-                .verifySubmittedDate("Mobile", "1234567890");
+                .verifySubmittedData("Student Name", "Bohdan Peliutkevich")
+                .verifySubmittedData("Student Email", "bohdan@gmail.com")
+                .verifySubmittedData("Mobile", "1234567890");
 
     }
 
@@ -51,9 +51,9 @@ public class RegistrationTest extends TestBase {
         //        Assertions
         submitModalComponent.modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedDate("Student Name", "Bohdan Peliutkevich")
-                .verifySubmittedDate("Gender", "Male")
-                .verifySubmittedDate("Mobile", "1234567890");
+                .verifySubmittedData("Student Name", "Bohdan Peliutkevich")
+                .verifySubmittedData("Gender", "Male")
+                .verifySubmittedData("Mobile", "1234567890");
     }
 
     @Test
