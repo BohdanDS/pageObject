@@ -2,47 +2,72 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.components.SubmitModalComponent;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 
 public class RegistrationTest extends TestBase {
 
+
     RegistrationPage registrationPage = new RegistrationPage();
+    SubmitModalComponent submitModalComponent = new SubmitModalComponent();
 
     @Test
-    void fillForm(){
+    void fullFormSubmit() {
 
         registrationPage.openPage()
                 .setFirstName("Bohdan")
                 .setLastName("Peliutkevich")
                 .setGender("Male")
                 .setEmail("bohdan@gmail.com")
-                .setPhoneNumber("1234567890");
+                .setPhoneNumber("1234567890")
+                .setRegistrationDate("1994", "January", "15")
+                .setHobbies("Reading")
+                .setSubject("Hindi")
+                .imageUpload()
+                .setState("NCR")
+                .setCity("Delhi")
+                .setCurrentAddress("baker street 221b")
+                .clickSubmitButton();
 
-
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").selectOption("1994");
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__day--015").click();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#subjectsInput").setValue("Hindi").pressEnter().setValue("English").pressEnter();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/image1.png"));
-        $("#state").click();
-        $("#react-select-3-option-2").click();
-        $("#city").click();
-        $("#react-select-4-option-1").click();
-        $("#currentAddress").setValue("Alabama");
-        $("#submit").click();
 //        Assertions
-        $(".modal-content").shouldBe(visible);
-        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
-        $("tbody").$(byText("Student Name")).sibling(0).shouldHave(text("Bohdan Peliutkevich"));
-        $("tbody").$(byText("Student Email")).sibling(0).shouldHave(text("bohdan@gmail.com"));
+        submitModalComponent.modalWindowIsVisible()
+                .verifyHeaderText("Thanks for submitting the form")
+                .verifySubmittedDate("Student Name", "Bohdan Peliutkevich")
+                .verifySubmittedDate("Student Email", "bohdan@gmail.com")
+                .verifySubmittedDate("Mobile", "1234567890");
+
     }
+
+    @Test
+    void minDataSubmit() {
+        registrationPage.openPage()
+                .setFirstName("Bohdan")
+                .setLastName("Peliutkevich")
+                .setGender("Male")
+                .setPhoneNumber("1234567890")
+                .clickSubmitButton();
+
+        //        Assertions
+        submitModalComponent.modalWindowIsVisible()
+                .verifyHeaderText("Thanks for submitting the form")
+                .verifySubmittedDate("Student Name", "Bohdan Peliutkevich")
+                .verifySubmittedDate("Gender", "Male")
+                .verifySubmittedDate("Mobile", "1234567890");
+    }
+
+    @Test
+    void submitWithNotSelectedGender(){
+        registrationPage.openPage()
+                .setFirstName("Bohdan")
+                .setLastName("Peliutkevich")
+                .setPhoneNumber("1234567890")
+                .clickSubmitButton();
+
+        //        Assertions
+        registrationPage.checkGenderFieldValidation("Male");
+        submitModalComponent.modalWindowIsNotVisible();
+    }
+
+
 }
