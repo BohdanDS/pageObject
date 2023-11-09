@@ -19,9 +19,8 @@ public class SubmitModalComponent {
         return this;
     }
 
-    public SubmitModalComponent modalWindowIsNotVisible(){
+    public void modalWindowIsNotVisible(){
         modalWindow.shouldNot(visible);
-        return this;
     }
 
     public SubmitModalComponent verifyHeaderText(String value) {
