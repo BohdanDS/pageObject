@@ -24,7 +24,7 @@ public class RegistrationTest extends TestBase {
                 .setRegistrationDate("1994", "January", "15")
                 .setHobbies("Reading")
                 .setSubject("Hindi")
-                .imageUpload("img.png")
+                .imageUpload("images/img.png")
                 .setState("NCR")
                 .setCity("Delhi")
                 .setCurrentAddress("baker street 221b")
