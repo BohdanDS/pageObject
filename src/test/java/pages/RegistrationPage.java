@@ -83,7 +83,7 @@ public class RegistrationPage {
         subjectInput.setValue(value).pressEnter();
         return this;
     }
-    public RegistrationPage imageUpload(String value){
+    public RegistrationPage fileUpload(String value){
         fileUploadField.uploadFromClasspath(value);
         return this;
     }
