@@ -1,10 +1,8 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byText;
@@ -82,11 +80,11 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setSubject(String value){
-        subjectInput.setValue(value);
+        subjectInput.setValue(value).pressEnter();
         return this;
     }
-    public RegistrationPage imageUpload(){
-        fileUploadField.uploadFile(new File("src/test/resources/img/img.png"));
+    public RegistrationPage imageUpload(String value){
+        fileUploadField.uploadFromClasspath(value);
         return this;
     }
 
