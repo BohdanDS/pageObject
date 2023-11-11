@@ -39,6 +39,7 @@ public class RegistrationTest extends TestBase {
                 .verifySubmittedData("Mobile", "1234567890")
                 .verifySubmittedData("Subjects", "Hindi")
                 .verifySubmittedData("Hobbies", "Reading")
+                .verifySubmittedData("Picture", "img.png")
                 .verifySubmittedData("Address", "baker street 221b")
                 .verifySubmittedData("State and City", "NCR Delhi");
 
@@ -47,14 +48,16 @@ public class RegistrationTest extends TestBase {
 
     @Test
     void minDataSubmit() {
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
                 .setFirstName("Bohdan")
                 .setLastName("Peliutkevich")
                 .setGender("Male")
                 .setPhoneNumber("1234567890")
                 .clickSubmitButton();
 
-        submitModalComponent.modalWindowIsVisible()
+        submitModalComponent
+                .modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
                 .verifySubmittedData("Student Name", "Bohdan Peliutkevich")
                 .verifySubmittedData("Gender", "Male")
@@ -63,7 +66,8 @@ public class RegistrationTest extends TestBase {
 
     @Test
     void submitWithNotSelectedGender(){
-        registrationPage.openPage()
+        registrationPage
+                .openPage()
                 .setFirstName("Bohdan")
                 .setLastName("Peliutkevich")
                 .setPhoneNumber("1234567890")
