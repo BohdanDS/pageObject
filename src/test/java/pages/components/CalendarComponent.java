@@ -1,7 +1,7 @@
 package pages.components;
 
 import com.codeborne.selenide.SelenideElement;
-
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CalendarComponent {
@@ -13,7 +13,7 @@ public class CalendarComponent {
     public void setDate(String year, String month, String day) {
         yearSelect.selectOption(year);
         monthSelect.selectOption(month);
-        $(".react-datepicker__day--0"+day).click();
+        $(".react-datepicker__month").$(byText(day)).click();
     }
 
 }

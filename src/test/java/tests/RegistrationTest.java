@@ -44,7 +44,7 @@ public class RegistrationTest extends TestBase {
                 .verifySubmittedData("Hobbies", registrationData.fakeHobby)
                 .verifySubmittedData("Picture", registrationData.fakeImage)
                 .verifySubmittedData("Address", registrationData.streetAddress)
-                .verifySubmittedData("State and City", "NCR Delhi");
+                .verifySubmittedData("State and City", String.format("%s %s",registrationData.fakeState,registrationData.fakeCity));
 
 
     }
