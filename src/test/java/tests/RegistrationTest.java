@@ -3,7 +3,7 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.SubmitModalComponent;
-
+import testData.RegistrationData;
 
 
 public class RegistrationTest extends TestBase {
@@ -12,35 +12,38 @@ public class RegistrationTest extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     SubmitModalComponent submitModalComponent = new SubmitModalComponent();
 
+    RegistrationData registrationData = new RegistrationData();
+
+
     @Test
     void fullFormSubmit() {
 
         registrationPage.openPage()
-                .setFirstName("Bohdan")
-                .setLastName("Peliutkevich")
-                .setGender("Male")
-                .setEmail("bohdan@gmail.com")
-                .setPhoneNumber("1234567890")
-                .setRegistrationDate("1994", "January", "15")
-                .setHobbies("Reading")
-                .setSubject("Hindi")
-                .fileUpload("images/img.png")
-                .setState("NCR")
-                .setCity("Delhi")
-                .setCurrentAddress("baker street 221b")
+                .setFirstName(registrationData.firstName)
+                .setLastName(registrationData.lastName)
+                .setGender(registrationData.fakeGender)
+                .setEmail(registrationData.userEmail)
+                .setPhoneNumber(registrationData.phoneNumber)
+                .setRegistrationDate(registrationData.fakeYear, registrationData.fakeMonth, registrationData.fakeDay)
+                .setHobbies(registrationData.fakeHobby)
+                .setSubject(registrationData.fakeSubject)
+                .fileUpload(registrationData.fakeImage)
+                .setState(registrationData.fakeState)
+                .setCity(registrationData.fakeCity)
+                .setCurrentAddress(registrationData.streetAddress)
                 .clickSubmitButton();
 
         submitModalComponent.modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedData("Student Name", "Bohdan Peliutkevich")
-                .verifySubmittedData("Student Email", "bohdan@gmail.com")
-                .verifySubmittedData("Gender", "Male")
-                .verifySubmittedData("Date of Birth", "15 January,1994")
-                .verifySubmittedData("Mobile", "1234567890")
-                .verifySubmittedData("Subjects", "Hindi")
-                .verifySubmittedData("Hobbies", "Reading")
-                .verifySubmittedData("Picture", "img.png")
-                .verifySubmittedData("Address", "baker street 221b")
+                .verifySubmittedData("Student Name", String.format("%s %s",registrationData.firstName,registrationData.lastName))
+                .verifySubmittedData("Student Email", registrationData.userEmail)
+                .verifySubmittedData("Gender", registrationData.fakeGender)
+                .verifySubmittedData("Date of Birth", String.format("%s %s,%s",registrationData.fakeDay,registrationData.fakeMonth,registrationData.fakeYear))
+                .verifySubmittedData("Mobile", registrationData.phoneNumber)
+                .verifySubmittedData("Subjects", registrationData.fakeSubject)
+                .verifySubmittedData("Hobbies", registrationData.fakeHobby)
+                .verifySubmittedData("Picture", registrationData.fakeImage)
+                .verifySubmittedData("Address", registrationData.streetAddress)
                 .verifySubmittedData("State and City", "NCR Delhi");
 
 
@@ -50,30 +53,30 @@ public class RegistrationTest extends TestBase {
     void minDataSubmit() {
         registrationPage
                 .openPage()
-                .setFirstName("Bohdan")
-                .setLastName("Peliutkevich")
-                .setGender("Male")
-                .setPhoneNumber("1234567890")
+                .setFirstName(registrationData.firstName)
+                .setLastName(registrationData.lastName)
+                .setGender(registrationData.fakeGender)
+                .setPhoneNumber(registrationData.phoneNumber)
                 .clickSubmitButton();
 
         submitModalComponent
                 .modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedData("Student Name", "Bohdan Peliutkevich")
-                .verifySubmittedData("Gender", "Male")
-                .verifySubmittedData("Mobile", "1234567890");
+                .verifySubmittedData("Student Name", String.format("%s %s",registrationData.firstName,registrationData.lastName))
+                .verifySubmittedData("Gender", registrationData.fakeGender)
+                .verifySubmittedData("Mobile", registrationData.phoneNumber);
     }
 
     @Test
     void submitWithNotSelectedGender(){
         registrationPage
                 .openPage()
-                .setFirstName("Bohdan")
-                .setLastName("Peliutkevich")
-                .setPhoneNumber("1234567890")
+                .setFirstName(registrationData.firstName)
+                .setLastName(registrationData.lastName)
+                .setPhoneNumber(registrationData.phoneNumber)
                 .clickSubmitButton();
 
-        registrationPage.checkGenderFieldValidation("Male");
+        registrationPage.checkGenderFieldValidation(registrationData.fakeGender);
         submitModalComponent.modalWindowIsNotVisible();
     }
 

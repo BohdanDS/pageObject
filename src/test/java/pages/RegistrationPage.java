@@ -84,7 +84,7 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage fileUpload(String value){
-        fileUploadField.uploadFromClasspath(value);
+        fileUploadField.uploadFromClasspath("images/"+value);
         return this;
     }
 
