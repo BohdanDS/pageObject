@@ -3,7 +3,7 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.SubmitModalComponent;
-import testData.RegistrationData;
+import testdata.RegistrationData;
 
 
 public class RegistrationTest extends TestBase {
@@ -16,7 +16,7 @@ public class RegistrationTest extends TestBase {
 
 
     @Test
-    void fullFormSubmit() {
+    void fullFormSubmitTest() {
 
         registrationPage.openPage()
                 .setFirstName(registrationData.firstName)
@@ -50,7 +50,7 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
-    void minDataSubmit() {
+    void minDataSubmitTest() {
         registrationPage
                 .openPage()
                 .setFirstName(registrationData.firstName)
@@ -68,7 +68,7 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
-    void submitWithNotSelectedGender(){
+    void submitWithNotSelectedGenderTest(){
         registrationPage
                 .openPage()
                 .setFirstName(registrationData.firstName)
