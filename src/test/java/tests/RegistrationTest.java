@@ -1,11 +1,13 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.SubmitModalComponent;
 import testdata.RegistrationData;
 
 
+@Tag("Registration_tests")
 public class RegistrationTest extends TestBase {
 
 

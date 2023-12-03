@@ -15,6 +15,18 @@ dependencies {
     )
 }
 
-test {
+tasks.withType(Test) {
     useJUnitPlatform()
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task registration_tests(type: Test){
+    useJUnitPlatform {
+        includeTags("Registration_tests")
+    }
 }
