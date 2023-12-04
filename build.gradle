@@ -6,10 +6,14 @@ repositories {
     mavenCentral()
 }
 
+def allureVersion = "2.21.0",
+    selenideVersion = "6.19.1"
+
 dependencies {
     testImplementation(
-            "com.codeborne:selenide:6.19.1",
+            "com.codeborne:selenide:$selenideVersion",
             "org.slf4j:slf4j-simple:2.0.7",
+            "io.qameta.allure:allure-selenide:$allureVersion",
             "org.junit.jupiter:junit-jupiter:5.10.0",
             "com.github.javafaker:javafaker:1.0.2"
     )
@@ -25,7 +29,7 @@ tasks.withType(Test) {
     }
 }
 
-task registration_tests(type: Test){
+task registration_tests(type: Test) {
     useJUnitPlatform {
         includeTags("Registration_tests")
     }
