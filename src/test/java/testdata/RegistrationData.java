@@ -31,13 +31,23 @@ public class RegistrationData {
             fakeCity = setCity(fakeState);
 
     public String setCity(String state) {
-        return switch (state) {
-            case "NCR" -> faker.options().option("Delhi", "Gurgaon", "Noida");
-            case "Uttar Pradesh" -> faker.options().option("Agra", "Lucknow", "Merrut");
-            case "Haryana" -> faker.options().option("Karnal", "Panipat");
-            case "Rajasthan" -> faker.options().option("Jaipur", "Jaiselmer");
-            default -> null;
-        };
-
+        String city;
+        switch (state) {
+            case "NCR":
+                city = faker.options().option("Delhi", "Gurgaon", "Noida");
+                break;
+            case "Uttar Pradesh":
+                city = faker.options().option("Agra", "Lucknow", "Merrut");
+                break;
+            case "Haryana":
+                city = faker.options().option("Karnal", "Panipat");
+                break;
+            case "Rajasthan":
+                city = faker.options().option("Jaipur", "Jaiselmer");
+                break;
+            default:
+                city = null;
+        }
+        return city;
     }
 }
