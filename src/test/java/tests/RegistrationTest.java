@@ -7,7 +7,7 @@ import pages.components.SubmitModalComponent;
 import testdata.RegistrationData;
 
 
-
+@Tag("RegistrationFormTests")
 public class RegistrationTest extends TestBase {
 
 
@@ -18,7 +18,6 @@ public class RegistrationTest extends TestBase {
 
 
     @Test
-    @Tag("RegistrationFormTests")
     void fullFormSubmitTest() {
 
         registrationPage.openPage()
@@ -53,7 +52,6 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
-    @Tag("RegistrationFormTests")
     void minDataSubmitTest() {
         registrationPage
                 .openPage()
@@ -72,7 +70,6 @@ public class RegistrationTest extends TestBase {
     }
 
     @Test
-    @Tag("RegistrationFormTests")
     void submitWithNotSelectedGenderTest(){
         registrationPage
                 .openPage()
