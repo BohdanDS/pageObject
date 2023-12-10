@@ -10,6 +10,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
 public class TestBase {
     @BeforeAll
     static void beforeFillForm(){
@@ -37,5 +39,6 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        closeWebDriver();
     }
 }
