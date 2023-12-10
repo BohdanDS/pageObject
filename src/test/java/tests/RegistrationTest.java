@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.SubmitModalComponent;
@@ -18,8 +19,8 @@ public class RegistrationTest extends TestBase {
 
 
     @Test
+    @Tag("SMOKE")
     void fullFormSubmitTest() {
-
         registrationPage.openPage()
                 .setFirstName(registrationData.firstName)
                 .setLastName(registrationData.lastName)
@@ -37,21 +38,26 @@ public class RegistrationTest extends TestBase {
 
         submitModalComponent.modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedData("Student Name", String.format("%s %s",registrationData.firstName,registrationData.lastName))
+                .verifySubmittedData("Student Name", String.format("%s %s", registrationData.firstName, registrationData.lastName))
                 .verifySubmittedData("Student Email", registrationData.userEmail)
                 .verifySubmittedData("Gender", registrationData.fakeGender)
-                .verifySubmittedData("Date of Birth", String.format("%s %s,%s",registrationData.fakeDay,registrationData.fakeMonth,registrationData.fakeYear))
+                .verifySubmittedData("Date of Birth", String.format("%s %s,%s", registrationData.fakeDay, registrationData.fakeMonth, registrationData.fakeYear))
                 .verifySubmittedData("Mobile", registrationData.phoneNumber)
                 .verifySubmittedData("Subjects", registrationData.fakeSubject)
                 .verifySubmittedData("Hobbies", registrationData.fakeHobby)
                 .verifySubmittedData("Picture", registrationData.fakeImage)
                 .verifySubmittedData("Address", registrationData.streetAddress)
-                .verifySubmittedData("State and City", String.format("%s %s",registrationData.fakeState,registrationData.fakeCity));
+                .verifySubmittedData("State and City", String.format("%s %s", registrationData.fakeState, registrationData.fakeCity));
 
 
     }
 
     @Test
+    @Tags({
+            @Tag("SMOKE"),
+            @Tag("CRITICAL")
+    }
+    )
     void minDataSubmitTest() {
         registrationPage
                 .openPage()
@@ -64,13 +70,13 @@ public class RegistrationTest extends TestBase {
         submitModalComponent
                 .modalWindowIsVisible()
                 .verifyHeaderText("Thanks for submitting the form")
-                .verifySubmittedData("Student Name", String.format("%s %s",registrationData.firstName,registrationData.lastName))
+                .verifySubmittedData("Student Name", String.format("%s %s", registrationData.firstName, registrationData.lastName))
                 .verifySubmittedData("Gender", registrationData.fakeGender)
                 .verifySubmittedData("Mobile", registrationData.phoneNumber);
     }
 
     @Test
-    void submitWithNotSelectedGenderTest(){
+    void submitWithNotSelectedGenderTest() {
         registrationPage
                 .openPage()
                 .setFirstName(registrationData.firstName)
