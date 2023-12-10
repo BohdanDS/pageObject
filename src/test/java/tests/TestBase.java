@@ -15,13 +15,13 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class TestBase {
     @BeforeAll
     static void beforeFillForm(){
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserSize =System.getProperty("browserSize","1920x1080");
-        Configuration.browserVersion = System.getProperty(" browserVersion", "100.0");
+        Configuration.browser = System.getProperty("browser", "");
+        Configuration.browserSize =System.getProperty("browserSize","");
+        Configuration.browserVersion = System.getProperty(" browserVersion", ".0");
         Configuration.pageLoadStrategy = "eager";
-        Configuration.baseUrl= System.getProperty("baseUrl", "https://demoqa.com");
+        Configuration.baseUrl= System.getProperty("baseUrl", "");
         Configuration.holdBrowserOpen = false;
-        Configuration.remote = System.getProperty("selenoid", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = System.getProperty("selenoid", "");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
