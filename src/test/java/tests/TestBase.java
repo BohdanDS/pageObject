@@ -14,6 +14,7 @@ public class TestBase {
     @BeforeAll
     static void beforeFillForm(){
         Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize =System.getProperty("browserSize","1920x1080");
         Configuration.browserVersion = System.getProperty(" browserVersion", "100.0");
         Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl= System.getProperty("baseUrl", "https://demoqa.com");
